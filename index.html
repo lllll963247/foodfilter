@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<title>Food filter福肥-找出你想要的餐廳</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9sFG083loAqo8hPlR_WwdfhdcB9DB6Do&callback=initMap"async defer></script>
+	
+    <script>
+    function initMap() {
+        var Station_latlng = { lat: 25.0502374, lng: 121.2946726 }; 
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15, //放大的倍率
+            center: Station_latlng, //初始化的地圖中心位置
+            streetViewControl : true 
+        });
+
+        //--------下面是呼叫一個新marker------
+
+       /* var marker = new google.maps.Marker({
+            position: Station_latlng, //marker的放置位置
+            map: map //這邊的map指的是第四行的map變數
+        });*/
+    };
+
+    var locateob = {
+        taipei : { lat: 25.031451,  lng: 121.543491  },
+        taoyuan: { lat: 25.0502374, lng: 121.2946726 },
+        hsinchu: { lat: 24.8033651, lng: 120.9778466 }
+    }
+    function locate(){
+        var select_value =document.getElementById('locate').value;
+        Station_latlng = locateob[select_value];
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15, //放大的倍率
+            center: Station_latlng //初始化的地圖中心位置
+        });
+    };
+
+
+    </script>
+
+</head>
+<body>
+    <div class="body">
+        <h1>Food filter福肥</h1>
+        地點：
+		<select id="locate" onchange="locate()">
+            <option value="taoyuan">桃園南崁</option>
+            <option value="taipei">臺北</option>
+            <option value="hsinchu">新竹</option>
+        </select>
+        <div id="map"></div>
+    </div>
+   
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9sFG083loAqo8hPlR_WwdfhdcB9DB6Do&callback=initMap">
+    </script>
+</body>
+
+</html>
